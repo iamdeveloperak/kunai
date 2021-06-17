@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<!-- page-title -->
+<section class="page-title" style="background-image: url({{assets_images}}/icons/banner-bg-6.png);">
+    <div class="anim-icons">
+        <div class="icon icon-1"><img src="{{assets_images}}/icons/anim-icon-17.png" alt=""></div>
+        <div class="icon icon-2 rotate-me"><img src="{{assets_images}}/icons/anim-icon-18.png" alt=""></div>
+        <div class="icon icon-3 rotate-me"><img src="{{assets_images}}/icons/anim-icon-19.png" alt=""></div>
+        <div class="icon icon-4"></div>
+    </div>
+    <div class="container">
+        <div class="content-box clearfix">
+            <div class="title-box pull-left">
+                <h1>{{pagedata.title}}</h1>
+                <p>{{pagedata.description}}</p>
+            </div>
+            <ul class="bread-crumb pull-right">
+                <li>Membership</li>
+                <li><a href="/">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- page-title end -->
+
+
+    <!-- pricing-style-three -->
+    <section class="pricing-style-three pricing-page-4">
+        <div class="container">
+            <div class="tabs-box">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                        <div class="content-box">
+                            <div class="sec-title"><h2>{{sectiondata.title}}</h2></div>
+                            <div class="text">{{sectiondata.description}}</div>
+                            <div class="tab-btn-box">
+                                <ul class="tab-btns tab-buttons clearfix">
+                                    <li class="tab-btn active-btn" data-tab="#tab-1">Monthly</li>
+                                    <li class="tab-btn" data-tab="#tab-2">Yearly</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 inner-column">
+                        <div class="inner-box centred">
+                            <div class="tabs-content">
+                                {% with first=true %}
+                                {% endwith %}
+                                {% if memberships %}
+                                    {% for membership in memberships %}
+                                        <div class="tab {% cycle 'active-tab' '' %}" id="{% cycle 'tab-1' 'tab-2' %}">
+                                            <div class="pricing-block-two">
+                                                <div class="pricing-table">
+                                                    <div class="table-header">
+                                                        <h3 class="title">{{membership.duration_period}}</h3>
+                                                        <div class="text">on the other hand</div>
+                                                        <h2 class="price">{{membership.price}}<span> Per {{membership.duration_period}}</span></h2>
+                                                    </div>
+                                                    <div class="table-content">
+                                                        <ul> 
+                                                            <li>unlimited Tracking</li>
+                                                            <li>Quick Support</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="table-footer">
+                                                        <form action="/membership/{{membership.slug}}/" method="post">{% csrf_token %}
+                                                            <button type="submit">Buy Now</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pricing-block-two">
+                                                <div class="pricing-table">
+                                                    <div class="choice-box">Popular Choice</div>
+                                                    <div class="table-header">
+                                                        <h3 class="title">{{membership.duration_period}}</h3>
+                                                        <div class="text">on the other hand</div>
+                                                        <h2 class="price">{{membership.price}}<span> Per {{membership.duration_period}}</span></h2>
+                                                    </div>
+                                                    <div class="table-content">
+                                                        <ul> 
+                                                            <li>unlimited Tracking</li>
+                                                            <li>Good Support</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="table-footer">
+                                                        <a>Buy Now</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- pricing-style-three end -->
+
+{% endblock %}

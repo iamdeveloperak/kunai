@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- page-title -->
+    <section class="page-title" style="background-image: url({{assets_images}}/icons/banner-bg-6.png);">
+        <div class="anim-icons">
+            <div class="icon icon-1"><img src="{{assets_images}}/icons/anim-icon-17.png" alt=""></div>
+            <div class="icon icon-2 rotate-me"><img src="{{assets_images}}/icons/anim-icon-18.png" alt=""></div>
+            <div class="icon icon-3 rotate-me"><img src="{{assets_images}}/icons/anim-icon-19.png" alt=""></div>
+            <div class="icon icon-4"></div>
+        </div>
+        <div class="container">
+            <div class="content-box clearfix">
+                <div class="title-box pull-left">
+                    <h1>{{pagedata.title}}</h1>
+                    <p>{{pagedata.description}}</p>
+                </div>
+                <ul class="bread-crumb pull-right">
+                    <li>Support</li>
+                    <li><a href="/">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- page-title end -->
+
+
+    <!-- contact-section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-12 col-sm-12 offset-lg-1 big-column">
+                    <div class="contact-form-area">
+                        <div class="sec-title center"><h2>Support Form</h2></div>
+                        <div class="form-inner">
+                            <form method="post" action="/support/" id="contact-form" class="default-form"> 
+                                {% csrf_token %}
+                                <div class="row">
+                                    {% if form.non_field_errors %}
+                                        {% for error in form.non_field_errors %}
+                                            <div id="username-error" class="text-center alert  alert-danger alert-dismissible fade show" role="alert" for="last_name">
+                                                {{error}}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div id="username-error" class="text-center alert  alert-{{message.tags}} alert-dismissible fade show" role="alert" for="last_name">
+                                                {{message|safe}}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                    <div class="col-lg-6 col-md-12 col-sm-12 column">
+                                        <div class="form-group">
+                                            <i class="fas fa-user"></i>
+                                            {{form.name}}
+                                            {% if form.name.error %}
+                                                <label id="username-error" class="error" for="username">{{form.name.error}}</label>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 column">
+                                        <div class="form-group">
+                                            <i class="fas fa-envelope"></i>
+                                            {{form.email}}
+                                            {% if form.email.error %}
+                                                <label id="username-error" class="error" for="username">{{form.email.error}}</label>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 column">
+                                        <div class="form-group">
+                                            <i class="fas fa-phone"></i>
+                                            {{form.phone}}
+                                            {% if form.phone.error %}
+                                                <label id="username-error" class="error" for="username">{{form.phone.error}}</label>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 column">
+                                        <div class="form-group">
+                                            <i class="fas fa-file"></i>
+                                            {{form.subject}}
+                                            {% if form.subject.error %}
+                                                <label id="username-error" class="error" for="username">{{form.subject.error}}</label>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 column">
+                                        <div class="form-group">
+                                            {{form.message}}
+                                            {% if form.message.error %}
+                                                <label id="username-error" class="error" for="username">{{form.message.error}}</label>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 column">
+                                        <div class="form-group message-btn centred">
+                                            <button type="submit" class="theme-btn-two" name="submit-form">Submit Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- contact-section end -->
+
+{% endblock %}

@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- check-website -->
+    <section class="check-website">
+        <div class="vactor-bg">
+            <!-- <div class="vactor-bg-1 wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="background-image: url({{assets_images}}/icons/vactor-9.png);"></div>
+            <div class="vactor-bg-2 wow slideInRight animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="background-image: url({{assets_images}}/icons/vactor-10.png);"></div> -->
+        </div>
+        <div class="anim-icons">
+            <div class="icon icon-1"><img src="{{assets_images}}/icons/shap-16.png" alt=""></div>
+        </div>
+        <div class="container">
+            <div class="inner-container">
+                <div class="sec-title center">
+                    <h2>Add Product To The List</h2>
+                </div>
+                <form method="post" class="subscribe-form">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                            <div id="username-error" class="text-center alert  alert-danger alert-dismissible fade show" role="alert" for="last_name">
+                                {{error}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div id="username-error" class="text-center alert  alert-{{message.tags}} alert-dismissible fade show" role="alert" for="last_name">
+                                {{message|safe}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <!-- <input type="text" name="web_url" placeholder="Enter URL" required=""> -->
+                        {{form.link}}
+                        <button type="submit">Track</button>
+                    </div>
+                </form>
+                <div class="text">copy amazon product link you want to track<br>and paste it in the above input box.</div>
+                <a class="theme-btn-three view-list-btn" href="#tracking-list">View List</a>
+            </div>
+        </div>
+    </section>
+    <!-- check-website end -->
+    
+
+    <!-- team-style-two -->
+    <section class="team-style-two">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 inner-content" id="tracking-list">
+                    <div class="inner-content">
+                        {% if products %}
+                        {% for product in products %}
+                        <div class="team-block-two">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-4 image-column">
+                                    <figure class="image-box"><a href="{{product.link}}" target="_blank"><img src="{% if product.image %}{{product.image.url}}{% endif %}" alt=""></a></figure>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-8 col-8 content-column d-flex">
+                                    <div class="content-box my-auto">
+                                        <h4><a href="{{product.link}}" target="_blank">{{product.title}}</a></h4>
+                                        {% if product.availability == 'unavailable' %}
+                                            <div class="text text-danger">Product is Currently unavailable</div>
+                                        {% else %}
+                                            <div class="text text-success">In Stock</div>
+                                        {% endif %}
+
+                                        {% if product.price > 0 %}
+                                            <h5>Old Price : <span>{{product.price}}</span></h5>
+                                        {% else %}
+                                            <h5>Old Price : <span>-</span></h5>
+                                        {% endif%}
+                                        
+                                        {% if product.change_price > 0 %}
+                                            <h5>Changed Price : <span>{{product.changed_price}}</span></h5>
+                                        {% else %}
+                                            <h5>Changed Price : <span>price has not changed!</span></h5>
+                                            <div class="text">You will Receive an email as soon as the price drops.</div>
+                                        {% endif%}
+                                        <ul class="team-social">
+                                        {% if product.deal_price > 0 %}
+                                            <h5>Deal Price : <span>{{product.deal_price}}</span></h5>
+                                        {% else %}
+                                            <h5>Deal Price : <span>No deals on this product!</span></h5>
+                                        {% endif%}
+                                        <ul class="team-social">
+                                            <li><a href="{{product.link}}" class="theme-btn" target="_blank">Check Product <i class="fas fa-external-link-square-alt"></i></a></li>
+                                            <li><a href="/tracking-list/delete/{{product.id}}" class="theme-btn">Delete Product <i class="fas fa-external-link-square-alt"></i></a></li>
+                                            <!-- <li><button type="submit" class="theme-btn" target="_blank">Delete<i class="fas fa-trash-alt"></i></button></li> -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- <div class="pagination-wrapper centred">
+                            <ul class="pagination">
+                                <li><a href="#"><i class="fas fa-angle-left"></i></a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#" class="active">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+                            </ul>
+                        </div> -->
+                        {% else %}
+                        <div class="sec-title center">
+                            <h2>List is empty.</h2>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+                <!-- <div class="col-lg-6 col-md-12 col-sm-12 inner-content">
+                    <div class="inner-content">
+                        <div class="team-block-two">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 image-column">
+                                    <figure class="image-box"><a href="#"><img src="{{assets_images}}/resource/team-15.jpg" alt=""></a></figure>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 content-column d-flex">
+                                    <div class="content-box my-auto">
+                                        <span>Destination marketing</span>
+                                        <h4><a href="#">Mahfuz Riad</a></h4>
+                                        <div class="text">Even the most beautiful brand is nothing without the audience and their reactions</div>
+                                        <ul class="team-social">
+                                            <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-block-two">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 image-column">
+                                    <figure class="image-box"><a href="#"><img src="{{assets_images}}/resource/team-16.jpg" alt=""></a></figure>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 content-column d-flex">
+                                    <div class="content-box my-auto">
+                                        <span>Head of Finance</span>
+                                        <h4><a href="#">Tamim Rf</a></h4>
+                                        <div class="text">Even the most beautiful brand is nothing without the audience and their reactions</div>
+                                        <ul class="team-social">
+                                            <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-block-two">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 image-column">
+                                    <figure class="image-box"><a href="#"><img src="{{assets_images}}/resource/team-17.jpg" alt=""></a></figure>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 content-column d-flex">
+                                    <div class="content-box my-auto">
+                                        <span>Ceo-founder</span>
+                                        <h4><a href="#">Emdad Hanza</a></h4>
+                                        <div class="text">Even the most beautiful brand is nothing without the audience and their reactions</div>
+                                        <ul class="team-social">
+                                            <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+    <!-- team-style-two end -->
+
+{% endblock %}

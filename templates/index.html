@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- banner-section -->
+    <section class="banner-section">
+        <div class="bg-layer" style="background-image: url({{assets_images}}/icons/banner-1.png);"></div>
+        <div class="pattern-bg" style="background-image: url({{assets_images}}/icons/vactor-1.png);"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                    <div class="content-box">
+                        <h1>{{pagedata.title}}</h1>
+                        <div class="text">{{pagedata.description}}</div>
+                        {% if not user.is_authenticated %}
+                        <div class="btn-box"><a href="{{pagedata.link}}">Register Now</a></div>
+                        {% else %}
+                        <div class="btn-box"><a href="{% url 'tracking-list' %}">Tracking List</a></div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                    <div class="image-box float-bob-y clearfix">
+                        <figure class="image image-1 wow fadeInUp" data-wow-delay="900ms" data-wow-duration="1500ms"><img src="{{assets_images}}/resource/amazonappphone-1.jpg" alt=""></figure>
+                        <figure class="image image-2 wow fadeInUp" data-wow-delay="1500ms" data-wow-duration="1500ms"><img src="{{assets_images}}/resource/amazonappphone-2.jpg" alt=""></figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner-section end -->
+
+
+    <!-- feature-section -->
+    <section class="feature-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-sm-12 image-column">
+                    <div id="iamge_block_01">
+                        <div class="image-box float-bob-y">
+                            <figure class="image wow slideInLeft" data-wow-delay="00ms" data-wow-duration="1500ms"><img src="{{afsection.image.url}}" alt=""></figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-12 col-sm-12 content-column">
+                    <div id="content_block_01">
+                        <div class="content-box">
+                            <div class="sec-title">
+                                <h2>{{afsection.title}}</h2>
+                                <p>{{afsection.description}}</p>
+                            </div>
+                            <div class="inner-box wow fadeInUp" data-wow-delay="00ms" data-wow-duration="1500ms">
+                                <div class="row">
+                                    {% for card in afsection.item_set.all %}
+                                    <div class="col-lg-6 col-md-6 col-sm-12 single-column">
+                                        <div class="single-item">
+                                            <div class="bg-layer" style="background-image: url({{assets_images}}/resource/case-2.png);"></div>
+                                            <div class="icon-box"><i class="{{card.icon}}"></i></div>
+                                            <h5><a href="#">{{card.title}}</a></h5>
+                                            <div class="text">{{card.description}}</div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    <!-- <div class="col-lg-6 col-md-6 col-sm-12 single-column">
+                                        <div class="single-item wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
+                                            <div class="bg-layer" style="background-image: url({{assets_images}}/resource/case-2.png);"></div>
+                                            <div class="icon-box"><i class="flaticon-app"></i></div>
+                                            <h5><a href="#">Easy To Use</a></h5>
+                                            <div class="text">Integer quis mollis lacus maecenas in ornare ex sed scelerisque nec elit nec vehicula duis pretium libero</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 single-column">
+                                        <div class="single-item wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
+                                            <div class="bg-layer" style="background-image: url({{assets_images}}/resource/case-2.png);"></div>
+                                            <div class="icon-box"><i class="flaticon-mail"></i></div>
+                                            <h5><a href="#">Email Notifications</a></h5>
+                                            <div class="text">Integer quis mollis lacus maecenas in ornare ex sed scelerisque nec elit nec vehicula duis pretium libero</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 single-column">
+                                        <div class="single-item wow fadeInUp" data-wow-delay="900ms" data-wow-duration="1500ms">
+                                            <div class="bg-layer" style="background-image: url({{assets_images}}/resource/case-2.png);"></div>
+                                            <div class="icon-box"><i class="flaticon-money"></i></div>
+                                            <h5><a href="#">Save a Lot</a></h5>
+                                            <div class="text">Integer quis mollis lacus maecenas in ornare ex sed scelerisque nec elit nec vehicula duis pretium libero</div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- feature-section -->
+
+    <!-- pricing-section -->
+    <!-- <section class="pricing-section centred">
+        <div class="container">
+            <div class="sec-title center">
+                <h2>Our Best Price Plan</h2>
+                <p>We provide best price plan for our customer check the list now<br />and slect now plan.</p>
+            </div>
+            <div class="tabs-box">
+                <div class="tabs-content">
+                        <div class="row">
+                            <div class="col-lg-4 offset-lg-2 col-md-6 col-sm-12 pricing-column">
+                                <div class="pricing-block-one">
+                                    <div class="pricing-table">
+                                        <figure class="image"><img src="{{assets_images}}/icons/price-icon-1.png" alt=""></figure>
+                                        <div class="table-header">
+                                            <h3 class="title">Monthly</h3>
+                                            <h2 class="price">05.00<span>/Mo</span></h2>
+                                        </div>
+                                        <div class="table-content">
+                                            <ul> 
+                                                <li>unlimited Tracking</li>
+                                                <li>Good Support</li>
+                                            </ul>
+                                        </div>
+                                        <div class="table-footer">
+                                            <a href="#" class="theme-btn-two">Purchase</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 pricing-column">
+                                <div class="pricing-block-one">
+                                    <div class="pricing-table">
+                                        <figure class="image"><img src="{{assets_images}}/icons/price-icon-2.png" alt=""></figure>
+                                        <div class="table-header">
+                                            <h3 class="title">Yearly</h3>
+                                            <h2 class="price">25.00<span>/Ye</span></h2>
+                                        </div>
+                                        <div class="table-content">
+                                            <ul> 
+                                                <li>unlimited Tracking</li>
+                                                <li>Good Support</li>
+                                            </ul>
+                                        </div>
+                                        <div class="table-footer">
+                                            <a href="#" class="theme-btn-two">Purchase</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- pricing-section end -->
+{% endblock %}

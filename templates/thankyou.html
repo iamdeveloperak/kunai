@@ -1,0 +1,68 @@
+{% load static %}
+{% static 'images' as assets_images %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="title" content="{{sitedata.meta_title}}">
+<meta name="description" content="{{sitedata.meta_description}}">
+<meta name="keywords" content="{{sitedata.meta_tags}}">
+<title>Thank You</title>
+
+<!-- Fav Icon -->
+<link rel="icon" href="{{sitedata.favicon.url}}" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link href="{% static 'css/font-awesome-all.css'%}" rel="stylesheet">
+<link href="{% static 'css/flaticon.css'%}" rel="stylesheet">
+<link href="{% static 'css/owl.css'%}" rel="stylesheet">
+<link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
+<link href="{% static 'css/jquery.fancybox.min.css'%}" rel="stylesheet">
+<link href="{% static 'css/animate.css'%}" rel="stylesheet">
+<link href="{% static 'css/imagebg.css'%}" rel="stylesheet">
+<link href="{% static 'css/style.css'%}" rel="stylesheet">
+<link href="{% static 'css/responsive.css'%}" rel="stylesheet">
+
+</head>
+
+
+<!-- page wrapper -->
+<body class="boxed_wrapper">
+    <!-- preloader -->
+    <div class="preloader"></div>
+    <!-- preloader -->
+
+        <!-- error-section -->
+        <section class="error-section centred">
+            <div class="container">
+                <div class="content-box">
+                    <!-- <figure class="error-image"><img src="{{assets_images}}/resource/error.png" alt=""></figure> -->
+                    <h1>Thank You for reaching to us</h1>
+                    <div class="text">we will fix your problem as soon as possible. be patience.</div>
+                    <div class="btn-box"><a href="/" class="theme-btn-two">Back To Home</a></div>
+                </div>
+            </div>
+        </section>
+        <!-- error-section end -->    
+<!-- jequery plugins -->
+<script src="{% static 'js/jquery.js'%}"></script>
+<script src="{% static 'js/popper.min.js'%}"></script>
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
+<script src="{% static 'js/owl.js'%}"></script>
+<script src="{% static 'js/wow.js'%}"></script>
+<script src="{% static 'js/validation.js'%}"></script>
+<script src="{% static 'js/jquery.fancybox.js'%}"></script>
+<script src="{% static 'js/appear.js'%}"></script>
+<script src="{% static 'js/scrollbar.js'%}"></script>
+<script src="{% static 'js/tilt.jquery.js'%}"></script>
+
+<!-- main-js -->
+<script src="{% static 'js/script.js'%}"></script>
+
+</body><!-- End of .page_wrapper -->
+</html>

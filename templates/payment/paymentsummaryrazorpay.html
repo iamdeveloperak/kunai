@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<!-- contact-section -->
+<section class="contact-section" style="background-image: url({{assets_images}}/background/softwere-product-bg.png); background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-md-12 col-sm-12 offset-lg-1 big-column">
+                <div class="contact-form-area">
+                    <div class="sec-title center"><h2>You are 1 step back to get your premium membership</h2></div>
+                    <div class="form-group message-btn centred">
+                        <button id="rzp-btn" class="theme-btn-three theme-btn-border">Pay Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- contact-section end -->
+
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+  var options = {
+    "key": "{{razorpay_merchant_id}}",
+    "amount": "{% widthratio price 1 100 %}",
+    "currency": "INR",
+    "name": "Kunai",
+    "description": "Premum Membership",
+    "order_id": "{{order_id}}",
+    "callback_url": "{{callback_url}}",
+    //"redirect": true,
+    "prefill": {
+      "name": "{{request.user.get_full_name}}",
+      "email": "{{request.user.email}}",
+      "contact": "+91" + "{{request.user.phone_number}}"
+    },
+  };
+  var rzp1 = new Razorpay(options);
+  document.getElementById('rzp-btn').onclick = function (e) {
+    rzp1.open();
+    e.preventDefault();
+  }
+</script>
+{% endblock %}

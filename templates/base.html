@@ -1,0 +1,237 @@
+{% load static %}
+{% static 'images' as assets_images %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="title" content="{{sitedata.meta_title}}">
+<meta name="description" content="{{sitedata.meta_description}}">
+<meta name="keywords" content="{{sitedata.meta_tags}}">
+<title>{{sitedata.title}}</title>
+
+<!-- Fav Icon -->
+<link rel="icon" href="{{sitedata.favicon.url}}" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link href="{% static 'css/font-awesome-all.css'%}" rel="stylesheet">
+<link href="{% static 'css/flaticon.css'%}" rel="stylesheet">
+<link href="{% static 'css/owl.css'%}" rel="stylesheet">
+<link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
+<link href="{% static 'css/jquery.fancybox.min.css'%}" rel="stylesheet">
+<link href="{% static 'css/animate.css'%}" rel="stylesheet">
+<link href="{% static 'css/imagebg.css'%}" rel="stylesheet">
+<link href="{% static 'css/style.css'%}" rel="stylesheet">
+<link href="{% static 'css/responsive.css'%}" rel="stylesheet">
+
+</head>
+
+
+<!-- page wrapper -->
+<body class="boxed_wrapper">
+    <!-- preloader -->
+    <div class="preloader"></div>
+    <!-- preloader -->
+
+    <!-- main header -->
+    <header class="main-header home-1">
+        <div class="outer-container">
+            <div class="container">
+                <div class="main-box clearfix">
+                    <div class="logo-box pull-left">
+                        <figure class="logo"><a href="/"><img src="{{sitedata.logo.url}}" alt=""></a></figure>
+                    </div>
+                    <div class="menu-area pull-right">
+                        <!--Mobile Navigation Toggler-->
+                        <div class="mobile-nav-toggler">
+                            <i class="icon-bar"></i>
+                            <i class="icon-bar"></i>
+                            <i class="icon-bar"></i>
+                        </div>
+                        <nav class="main-menu navbar-expand-md navbar-light">
+                            <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                <ul class="navigation clearfix">
+                                    <li class="{%if active == 'home'%}current{%endif%} dropdown"><a href="/">Home</a></li> 
+                                    <li class="{%if active == 'tracking-list'%}current{%endif%}"><a href="/tracking-list/">Tracking list</a></li>
+                                    {% if not user.is_authenticated %}
+                                    <li><a href="/account/register/">Register</a></li>
+                                    <li><a href="/account/login/">Login</a></li>
+                                    {% endif %}
+                                    <li class="{%if active == 'support'%}current{%endif%}"><a href="/support">Support</a></li>
+                                    {% if user.is_authenticated %}
+                                        {% if not user.is_premium_user %}
+                                            <li class="{%if active == 'membership'%}current{%endif%}"><a href="/membership/">Membership</a></li>
+                                        {% endif %}
+                                    <li class="dropdown {%if active == 'account-settings'%}current{%endif%}"><a><i class="fa fa-user-alt"></i> {{user.username}}</a>
+                                        <ul class="from-right">
+                                            <li><a href="/account/account-settings/"> <i class="fas fa-cog"></i> Account Settings</a></li>
+                                            <li><a href="/account/change-password/"> <i class="fas fa-lock"></i> Change Password</a></li>
+                                            <li><a href="/account/logout/"><i class="fas fa-power-off"></i> Logout</a></li>
+                                        </ul>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--sticky Header-->
+        <div class="sticky-header">
+            <div class="container clearfix">
+                <figure class="logo-box"><a href="/"><img src="{{sitedata.logo.url}}" alt=""></a></figure>
+                <div class="menu-area">
+                    <nav class="main-menu clearfix">
+                        <!--Keep This Empty / Menu will come through Javascript-->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- main-header end -->
+
+    <!-- Mobile Menu  -->
+    <div class="mobile-menu">
+        <div class="menu-backdrop"></div>
+        <div class="close-btn"><i class="fas fa-times"></i></div>
+        
+        <nav class="menu-box">
+            <div class="nav-logo"><a href="index.html"><img src="{{assets_images}}/logo.png" alt="" title=""></a></div>
+            <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+            <!-- <div class="contact-info">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li>Chicago 12, Melborne City, USA</li>
+                    <li><a href="tel:+8801682648101">+88 01682648101</a></li>
+                    <li><a href="mailto:info@example.com">info@example.com</a></li>
+                </ul>
+            </div> -->
+            <div class="social-links">
+                <ul class="clearfix">
+                    <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                    <li><a href="#"><span class="fab fa-facebook-square"></span></a></li>
+                    <li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>
+                    <li><a href="#"><span class="fab fa-instagram"></span></a></li>
+                    <li><a href="#"><span class="fab fa-youtube"></span></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div><!-- End Mobile Menu -->
+
+
+{% block content %}
+
+{% endblock %}
+
+
+    <!-- main-footer -->
+    <footer class="main-footer style-new">
+        <div class="image-layer" style="background-image: url({{assets_images}}/icons/footer-bg.png);"></div>
+        <div class="container">
+            <div class="footer-top">
+                <div class="widget-section">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-5 col-sm-12 footer-column">
+                            <div class="about-widget footer-widget">
+                                <figure class="footer-logo"><a href="/"><img src="{{sitedata.logo_2.url}}" alt=""></a></figure>
+                                <div class="text">{{sitedata.footer_text}}</div>
+                                <ul class="social-links">
+                                    <li><h6>Follow Us :</h6></li>
+                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+                            <div class="links-widget footer-widget">
+                                <h4 class="widget-title">Support</h4>
+                                <div class="widget-content">
+                                    <ul class="list clearfix">
+                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="#">Ask for support</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="col-lg-4 col-md-3 col-sm-12 footer-column">
+                            <div class="links-widget footer-widget">
+                                <h4 class="widget-title">Links</h4>
+                                <div class="widget-content">
+                                    <ul class="list clearfix">
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/tracking-list/">Tracking List</a></li>
+                                        <li><a href="/support/">Support</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 footer-column">
+                            <div class="contact-widget footer-widget">
+                                <h4 class="widget-title">Contact Info</h4>
+                                <div class="widget-content">
+                                    <ul class="list clearfix">
+                                        <li>
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            {{sitedata.address}}
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-phone-volume"></i>
+                                            <a href="tel:{{sitedata.phone}}">{{sitedata.phone}}</a><br />
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-envelope"></i>
+                                            <a href="mailto:{{sitedata.email}}">{{sitedata.email}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container clearfix">
+                    <div class="copyright pull-left">&copy; 2020 <a href="#">Kunai</a>. All rights reserved</div>
+                    <ul class="footer-nav pull-right">
+                        <li><a href="/privacyterms/">Terms of Service</a></li>
+                        <li><a href="/privacypolicy/">Privacy Policy</a></li>
+                        <li><a href="/termsandconditions/">Terms and conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- main-footer end -->
+
+
+<!--Scroll to top-->
+<button class="scroll-top scroll-to-target" data-target="html">
+    <span class="fa fa-arrow-up"></span>
+</button>
+
+
+<!-- jequery plugins -->
+<script src="{% static 'js/jquery.js'%}"></script>
+<script src="{% static 'js/popper.min.js'%}"></script>
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
+<script src="{% static 'js/owl.js'%}"></script>
+<script src="{% static 'js/wow.js'%}"></script>
+<script src="{% static 'js/validation.js'%}"></script>
+<script src="{% static 'js/jquery.fancybox.js'%}"></script>
+<script src="{% static 'js/appear.js'%}"></script>
+<script src="{% static 'js/scrollbar.js'%}"></script>
+<script src="{% static 'js/tilt.jquery.js'%}"></script>
+
+<!-- main-js -->
+<script src="{% static 'js/script.js'%}"></script>
+
+</body><!-- End of .page_wrapper -->
+</html>
