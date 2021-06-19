@@ -93,15 +93,23 @@ WSGI_APPLICATION = 'kunai.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'kunai',
+    #     'USER': 'root',
+    #     'PASSWORD': 'root',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306',
+    # },
+    # 'postgres': {
+    #     'ENGINE': 'django.db.backends.postgres',
+    #     'NAME': 'kunai',
+    #     'USER': 'dpdvhqitavjgwn',
+    #     'PASSWORD': '62d7fcc10955854e2c46b4fa87e710b0e8adc5811a8c454b139949822fd39bd3',
+    #     'HOST': 'ec2-34-232-191-133.compute-1.amazonaws.com',
+    #     'PORT': '5432',
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'kunai',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    },
-    'sqlite3': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
