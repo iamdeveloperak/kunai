@@ -40,6 +40,13 @@ INSTALLED_APPS = [
     'membership',
     'django_extensions',
     
+    # django celery apps
+    'django_celery_beat',
+    'django_celery_results',
+
+    # admin reorder
+    'admin_reorder',
+    
     #django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,12 +55,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # django celery apps
-    'django_celery_beat',
-    'django_celery_results',
-
-    # admin reorder
-    'admin_reorder',
 ]
 
 MIDDLEWARE = [
@@ -88,7 +89,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kunai.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -114,12 +114,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age = 600)
-DATABASES['default'].update(db_from_env)
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -154,24 +148,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# media settings
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ADMIN_SITE_HEADER = "KUNAI ADMIN"
 ADMIN_SITE_TITLE = "Welcome to Kunai admin"
@@ -213,7 +193,6 @@ GRAPH_MODELS = {
     'group_models': True
 }
 
-
 ADMIN_REORDER = (
     # Keep original label and models
     # 'sites',
@@ -231,3 +210,23 @@ ADMIN_REORDER = (
 # PAYMENT GATEWAY SETTINGS
 razorpay_id = 'rzp_test_MolyLNL0HfA9Cc'
 razorpay_account_id = 'wFAse7GlpnY1oBW2VcaHwQuH'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+# media settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age = 600)
+DATABASES['default'].update(db_from_env)
