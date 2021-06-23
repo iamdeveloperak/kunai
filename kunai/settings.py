@@ -235,3 +235,23 @@ ADMIN_REORDER = (
 # PAYMENT GATEWAY SETTINGS
 razorpay_id = 'rzp_test_MolyLNL0HfA9Cc'
 razorpay_account_id = 'wFAse7GlpnY1oBW2VcaHwQuH'
+
+
+import django_heroku
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
+
+django_heroku.settings(locals(), logging=False)
