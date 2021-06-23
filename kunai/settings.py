@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$+#p-0rm0grjif2*$n39+gz)wr_$r8%nyvcj=bna*m@sch3yyq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -56,7 +56,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -65,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'admin_reorder.middleware.ModelAdminReorder',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'kunai.urls'
@@ -91,14 +91,14 @@ WSGI_APPLICATION = 'kunai.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'kunai',
-    #     'USER': 'root',
-    #     'PASSWORD': 'root',
-    #     'HOST': 'localhost',
-    #     'PORT': '3306',
-    # },
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'kunai',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    },
     # 'postgres': {
     #     'ENGINE': 'django.db.backends.postgres',
     #     'NAME': 'kunai',
@@ -107,23 +107,20 @@ DATABASES = {
     #     'HOST': 'ec2-34-232-191-133.compute-1.amazonaws.com',
     #     'PORT': '5432',
     # },
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kunai',
-        'USER': 'postgres',
-        'PASSWORD': 'Akashdecristiano7',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'kunai',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'Akashdecristiano7',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # },
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # },
 }
 
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age = 600)
-DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -237,6 +234,10 @@ razorpay_id = 'rzp_test_MolyLNL0HfA9Cc'
 razorpay_account_id = 'wFAse7GlpnY1oBW2VcaHwQuH'
 
 
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age = 600)
+DATABASES['default'].update(db_from_env)
+
 import django_heroku
 LOGGING = {
     'version': 1,
@@ -255,3 +256,4 @@ LOGGING = {
 }
 
 django_heroku.settings(locals(), logging=False)
+
