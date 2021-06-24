@@ -19,6 +19,7 @@ def tracking_view(request):
     context = {
         'sitedata': sitedata, 
         'pagedata': pagedata,
+        'active': 'tracking-list'
     }
     form = ProductForm()
     if request.method == 'POST':

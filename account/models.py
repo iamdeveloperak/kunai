@@ -39,15 +39,7 @@ class CustomUser(AbstractUser):
                     self.is_premium = False
                     self.save()
             else:
-                # um.order_id = None
-                # um.datetime_of_payment = None
-                # um.razorpay_order_id = None
-                # um.razorpay_payment_id = None
-                # um.razorpay_signature = None
                 um.save()
-                # um.delete()
-                # membership = Membership.objects.get(slug='free')
-                # usermembership = UserMembership.objects.get_or_create(user=self, membership=membership)
                 products = Product.objects.filter(user=self)
                 if products.count() > 3:
                     for p in enumerate(products):

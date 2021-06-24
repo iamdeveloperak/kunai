@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+env = environ.Env(
+    # set casting, default value,  if DEBUG=True/On in .env then True otherwise False
+    DEBUG=(bool, False)
+)
+# reading .env file
+environ.Env.read_env()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -193,7 +201,7 @@ EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'kunaitrackerapp@gmail.com'
-EMAIL_HOST_PASSWORD = 'Akashdecristiano7'
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = 'suppor<kunaitrackerapp@gmail.com>'
 
