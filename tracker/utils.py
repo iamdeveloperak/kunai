@@ -1,9 +1,5 @@
 from bs4 import BeautifulSoup
-import json
 import requests
-import lxml
-from time import sleep
-import random
 # from urllib.request import urlopen
 from django.conf import settings
 # Windows 10 with Google Chrome
@@ -13,19 +9,10 @@ user_agent_desktop = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '\
 
 headers = { 'User-Agent': user_agent_desktop}
 
-urls = [
-    "https://www.amazon.in/dp/B083JTVMGM",
-    "https://www.amazon.in/dp/B07MSCVCP4",
-    "https://www.amazon.in/dp/B08HLTFB33",
-    "https://www.amazon.in/dp/B07R5J57ZX",
-    "https://www.amazon.in/dp/B0719BFHB2",
-    "https://www.amazon.in/dp/B07F2HH7FV",
-    "https://www.amazon.in/Magideal-Naruto-Action-Figures-Multicolour/dp/B01MZBIF11/ref=sr_1_30?dchild=1&keywords=naruto+ninja+band&qid=1619928963&sr=8-30",
-]
-
 def getproduct(url):
     result = requests.get(url, headers=headers)
     soup = BeautifulSoup(result.text, 'lxml')
+    print(soup)
     price = 0
     deal_price = 0
     title = soup.find('span',attrs={'id':'productTitle'}).text.strip()
