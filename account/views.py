@@ -102,9 +102,9 @@ class SignupViewUser(generic.CreateView):
                 )
                 messages.success(request, 'A confirmation email has been sent to your email account. Please click on the link to confirm your account.')
                 return self.render_to_response({'form':form})
-            except:
-                form.add_error('', 'Error occured in sending mail! Please try again.')
-                messages.error(request, 'Error occured in sending mail! Please try again.')
+            except Exception as e:
+                # form.add_error('', 'Error occured in sending mail! Please try again.')
+                messages.error(request, f'Error occured in sending mail! Please try again. {e}')
                 return self.render_to_response({'form':form})
         else:
             return response

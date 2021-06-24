@@ -195,7 +195,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'kunaitrackerapp@gmail.com'
 EMAIL_HOST_PASSWORD = 'Akashdecristiano7'
 EMAIL_USE_SSL = False
-DEFAULT_FROM_EMAIL = 'Testing <kunaitrackerapp@gmail.com>'
+DEFAULT_FROM_EMAIL = '<kunaitrackerapp@gmail.com>'
 
 # PASSWORD_RESET_TIMEOUT_DAYS = 1
 
