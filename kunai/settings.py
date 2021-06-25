@@ -65,6 +65,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -72,7 +73,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'admin_reorder.middleware.ModelAdminReorder',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'kunai.urls'
@@ -201,7 +201,7 @@ EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'kunaitrackerapp@gmail.com'
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = 'qnqwmnegatwgfvdj'
 EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = 'suppor<kunaitrackerapp@gmail.com>'
 
@@ -224,9 +224,6 @@ GRAPH_MODELS = {
 
 
 ADMIN_REORDER = (
-    # Keep original label and models
-    # 'sites',
-    # {'app': 'website', 'label': 'WEBSITE SETTINGS'},
     {'app': 'website', 'label': 'WEBSITE SETTINGS', 'models': ('website.SiteMeta', 'website.Page', 'website.PageSection')},
     'account',
     'tracker',
